@@ -2,12 +2,12 @@ object Solution {
   def myAtoi(str: String): Int = {
     import scala.util.Try
 
-    val p = "([-|+][0-9]+|[0-9]*)(.*)".r
+    val p = "(\\s*)([-|+][0-9]+|[0-9]*)(.*)".r
     val (min: Int, max: Int) = (Int.MinValue, Int.MaxValue)
 
     def getStr(str: String): String =
-      str.trim match {
-        case p(v1, _) if v1.nonEmpty => v1
+      str match {
+        case p(_, v, _) if v.nonEmpty => v
         case _                       => "0"
       }
 
@@ -22,3 +22,6 @@ object Solution {
     }
   }
 }
+//Status: Accepted
+//Runtime: 552 ms
+//Memory: 51 MB
